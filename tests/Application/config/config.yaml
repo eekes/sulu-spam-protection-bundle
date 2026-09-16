@@ -1,0 +1,91 @@
+framework:
+    test: true
+    secret: 'eekes-sulu-spam-protection'
+    http_method_override: false
+    handle_all_throwables: true
+    php_errors:
+        log: true
+    translator:
+        fallbacks: ['en']
+
+twig:
+    strict_variables: true
+
+doctrine:
+    dbal:
+        driver: 'pdo_sqlite'
+        url: 'sqlite:///%kernel.cache_dir%/test.db'
+    orm:
+        auto_generate_proxy_classes: true
+        auto_mapping: false
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        report_fields_where_declared: true
+
+monolog:
+    handlers:
+        spam_protection:
+            type: test
+            level: debug
+            channels: ['spam_protection']
+        main:
+            type: 'null'
+            channels: ['!spam_protection']
+
+karser_recaptcha3:
+    site_key: '%env(RECAPTCHA3_KEY)%'
+    secret_key: '%env(RECAPTCHA3_SECRET)%'
+    score_threshold: 0.5
+    enabled: true
+
+services:
+    # reCAPTCHA stays switched on so the real checker runs, but Google is never called. The bundle
+    # has a compiler pass that re-points karser_recaptcha3.google.request_method to this id, so
+    # overriding the alias itself would be undone at compile time.
+    karser_recaptcha3.request_method.symfony_http_client:
+        class: Eekes\Sulu\SpamProtectionBundle\Tests\Double\FakeRecaptchaRequestMethod
+
+    # Tests reach the services under these ids.
+    eekes_test.google:
+        alias: karser_recaptcha3.request_method.symfony_http_client
+        public: true
+
+    eekes_test.spam_checker:
+        alias: Eekes\Sulu\SpamProtectionBundle\Application\Service\SpamCheckerInterface
+        public: true
+
+    eekes_test.blocked_submission_logger:
+        alias: Eekes\Sulu\SpamProtectionBundle\Application\Service\BlockedSubmissionLogger
+        public: true
+
+    eekes_test.blocked_submission_repository:
+        alias: Eekes\Sulu\SpamProtectionBundle\Domain\Repository\BlockedSubmissionRepository
+        public: true
+
+    eekes_test.spam_protection_log:
+        alias: monolog.handler.spam_protection
+        public: true
+
+    # Framework services the tests build a form or a request with.
+    eekes_test.entity_manager:
+        alias: doctrine.orm.entity_manager
+        public: true
+
+    eekes_test.form_factory:
+        alias: form.factory
+        public: true
+
+    eekes_test.request_stack:
+        alias: request_stack
+        public: true
+
+    eekes_test.translator:
+        alias: translator
+        public: true
+
+    eekes_test.twig:
+        alias: twig
+        public: true
+
+    eekes_test.router:
+        alias: router
+        public: true

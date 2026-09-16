@@ -1,0 +1,14 @@
+{
+    "eekes_spam_protection.blocked_submissions": "Blocked submissions",
+    "eekes_spam_protection.blocked_at": "Blocked at",
+    "eekes_spam_protection.form": "Form",
+    "eekes_spam_protection.source": "Source",
+    "eekes_spam_protection.score": "Score",
+    "eekes_spam_protection.reason": "Reason",
+    "eekes_spam_protection.ip_address": "IP address",
+    "eekes_spam_protection.url": "Page",
+    "eekes_spam_protection.locale": "Language",
+    "eekes_spam_protection.user_agent": "Browser",
+    "eekes_spam_protection.answers": "Answers",
+    "eekes_spam_protection.answers_info": "What the sender filled in. This is a log: changes are not saved."
+}

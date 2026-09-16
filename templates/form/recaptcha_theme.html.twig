@@ -1,0 +1,39 @@
+{#
+    Overrides @KarserRecaptcha3/Form/karser_recaptcha3_widget.html.twig.
+
+    Two changes are needed to make reCAPTCHA v3 work inside a Live Component:
+    - the token is written by JavaScript, which does not trigger the change event that Live
+      Components listen to, so it is dispatched manually;
+    - the hidden input disappears once the form is replaced by the success message, so the refresh
+      loop has to stop instead of throwing on a missing element.
+
+    Registered automatically through twig.form_themes, directly after the theme it overrides. A
+    project that already has a form theme keeps it: everything the project lists itself comes after
+    this one, so a theme of the project still wins.
+#}
+{% block karser_recaptcha3_widget %}
+    {%- set type = type|default('hidden') -%}
+    {{ block('form_widget_simple') }}
+
+    {% if form.vars.enabled %}
+        {% set callback = 'recaptchaCallback_' ~ id|replace({'-': '_'}) %}
+
+        <script type="text/javascript">
+            var {{ callback }} = function () {
+                var field = document.getElementById('{{ id }}');
+
+                if (field === null) {
+                    return;
+                }
+
+                grecaptcha.execute('{{ form.vars.site_key }}', {action: '{{ form.vars.action_name }}'}).then(function (token) {
+                    field.value = token;
+                    field.dispatchEvent(new Event('change', {bubbles: true}));
+                });
+
+                setTimeout({{ callback }}, 100000);
+            };
+        </script>
+        <script type="text/javascript" src="https://{{ form.vars.host }}/recaptcha/api.js?render={{ form.vars.site_key }}&hl={{ form.vars.locale }}&onload={{ callback }}" async defer></script>
+    {% endif %}
+{% endblock %}

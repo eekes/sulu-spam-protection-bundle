@@ -1,0 +1,14 @@
+{
+    "eekes_spam_protection.blocked_submissions": "Geblokkeerde inzendingen",
+    "eekes_spam_protection.blocked_at": "Geblokkeerd op",
+    "eekes_spam_protection.form": "Formulier",
+    "eekes_spam_protection.source": "Bron",
+    "eekes_spam_protection.score": "Score",
+    "eekes_spam_protection.reason": "Reden",
+    "eekes_spam_protection.ip_address": "IP-adres",
+    "eekes_spam_protection.url": "Pagina",
+    "eekes_spam_protection.locale": "Taal",
+    "eekes_spam_protection.user_agent": "Browser",
+    "eekes_spam_protection.answers": "Antwoorden",
+    "eekes_spam_protection.answers_info": "Wat de afzender invulde. Dit is een logboek: wijzigingen worden niet bewaard."
+}

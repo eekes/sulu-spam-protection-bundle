@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<form xmlns="http://schemas.sulu.io/template/template"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/form-1.0.xsd"
+>
+    <key>eekes_blocked_submission_details</key>
+
+    <properties>
+        <property name="payload" type="text_area" colspan="12">
+            <meta>
+                <title>eekes_spam_protection.answers</title>
+                <info_text>eekes_spam_protection.answers_info</info_text>
+            </meta>
+        </property>
+
+        <property name="sourceName" type="text_line" colspan="6">
+            <meta>
+                <title>eekes_spam_protection.form</title>
+            </meta>
+        </property>
+
+        <property name="source" type="text_line" colspan="6">
+            <meta>
+                <title>eekes_spam_protection.source</title>
+            </meta>
+        </property>
+
+        <property name="reason" type="text_line" colspan="6">
+            <meta>
+                <title>eekes_spam_protection.reason</title>
+            </meta>
+        </property>
+
+        <property name="score" type="text_line" colspan="6">
+            <meta>
+                <title>eekes_spam_protection.score</title>
+            </meta>
+        </property>
+
+        <property name="url" type="text_line" colspan="12">
+            <meta>
+                <title>eekes_spam_protection.url</title>
+            </meta>
+        </property>
+
+        <property name="ipAddress" type="text_line" colspan="6">
+            <meta>
+                <title>eekes_spam_protection.ip_address</title>
+            </meta>
+        </property>
+
+        <property name="locale" type="text_line" colspan="6">
+            <meta>
+                <title>eekes_spam_protection.locale</title>
+            </meta>
+        </property>
+
+        <property name="userAgent" type="text_area" colspan="12">
+            <meta>
+                <title>eekes_spam_protection.user_agent</title>
+            </meta>
+        </property>
+    </properties>
+</form>

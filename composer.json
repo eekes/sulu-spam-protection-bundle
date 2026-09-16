@@ -1,0 +1,86 @@
+{
+    "name": "eekes/sulu-spam-protection-bundle",
+    "type": "symfony-bundle",
+    "description": "Invisible reCAPTCHA v3 spam protection for Sulu and Symfony website forms, with a log of what it blocked",
+    "keywords": [
+        "sulu",
+        "symfony",
+        "spam",
+        "recaptcha",
+        "forms"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ewald Vanderveken",
+            "email": "vandervekenewald@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "doctrine/dbal": "^3.8 || ^4.0",
+        "doctrine/doctrine-bundle": "^2.13",
+        "doctrine/orm": "^3.3",
+        "karser/karser-recaptcha3-bundle": "^0.3.0",
+        "psr/log": "^3.0",
+        "sulu/sulu": "^3.0",
+        "symfony/config": "^7.2",
+        "symfony/console": "^7.2",
+        "symfony/dependency-injection": "^7.2",
+        "symfony/event-dispatcher": "^7.2",
+        "symfony/form": "^7.2",
+        "symfony/framework-bundle": "^7.2",
+        "symfony/http-foundation": "^7.2",
+        "symfony/http-kernel": "^7.2",
+        "symfony/translation-contracts": "^3.5"
+    },
+    "require-dev": {
+        "dama/doctrine-test-bundle": "^8.2",
+        "doctrine/doctrine-migrations-bundle": "^3.7",
+        "php-cs-fixer/shim": "^3.58",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpunit/phpunit": "^11.5 || ^12.1",
+        "sulu/form-bundle": "^3.0",
+        "symfony/browser-kit": "^7.2",
+        "symfony/monolog-bundle": "^3.10 || ^4.0",
+        "symfony/twig-bundle": "^7.2",
+        "symfony/yaml": "^7.2"
+    },
+    "suggest": {
+        "sulu/form-bundle": "To offer spam protection as a field in the forms editors build in the Sulu admin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eekes\\Sulu\\SpamProtectionBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Eekes\\Sulu\\SpamProtectionBundle\\Tests\\": "tests/"
+        },
+        "exclude-from-classmap": [
+            "tests/Application/var/"
+        ]
+    },
+    "scripts": {
+        "cs": "php-cs-fixer fix --dry-run --diff",
+        "cs-fix": "php-cs-fixer fix",
+        "phpstan": "phpstan analyse --memory-limit=1G",
+        "test": "phpunit",
+        "psr": "@composer dump-autoload --optimize --strict-psr"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "symfony/runtime": true
+        },
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

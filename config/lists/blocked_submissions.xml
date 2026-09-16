@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<list xmlns="http://schemas.sulu.io/list-builder/list">
+    <key>eekes_blocked_submissions</key>
+
+    <properties>
+        <property name="id" visibility="no" translation="sulu_admin.id">
+            <field-name>id</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+        </property>
+
+        <property name="createdAt" visibility="always" translation="eekes_spam_protection.blocked_at">
+            <field-name>createdAt</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+            <transformer type="datetime">
+                <params>
+                    <param name="format" value="d/m/Y H:i"/>
+                </params>
+            </transformer>
+            <filter type="datetime"/>
+        </property>
+
+        <property name="sourceName" visibility="always" searchability="yes" translation="eekes_spam_protection.form">
+            <field-name>sourceName</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+        </property>
+
+        <property name="source" visibility="yes" searchability="yes" translation="eekes_spam_protection.source">
+            <field-name>source</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+            <filter type="text"/>
+        </property>
+
+        <property name="score" visibility="yes" type="number" translation="eekes_spam_protection.score">
+            <field-name>score</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+            <filter type="number"/>
+        </property>
+
+        <property name="reason" visibility="yes" translation="eekes_spam_protection.reason">
+            <field-name>reason</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+        </property>
+
+        <property name="ipAddress" visibility="yes" searchability="yes" translation="eekes_spam_protection.ip_address">
+            <field-name>ipAddress</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+        </property>
+
+        <property name="url" visibility="no" searchability="yes" translation="eekes_spam_protection.url">
+            <field-name>url</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+        </property>
+
+        <property name="locale" visibility="no" translation="eekes_spam_protection.locale">
+            <field-name>locale</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+        </property>
+
+        <property name="userAgent" visibility="no" searchability="yes" translation="eekes_spam_protection.user_agent">
+            <field-name>userAgent</field-name>
+            <entity-name>Eekes\Sulu\SpamProtectionBundle\Domain\Entity\BlockedSubmission</entity-name>
+        </property>
+    </properties>
+</list>
