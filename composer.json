@@ -20,7 +20,7 @@
         "php": "^8.3",
         "doctrine/dbal": "^3.8 || ^4.0",
         "doctrine/doctrine-bundle": "^2.13",
-        "doctrine/orm": "^3.3",
+        "doctrine/orm": "^2.17 || ^3.3",
         "karser/karser-recaptcha3-bundle": "^0.3.0",
         "psr/log": "^3.0",
         "sulu/sulu": "^3.0",
