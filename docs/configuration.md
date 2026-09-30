@@ -10,7 +10,7 @@ eekes_sulu_spam_protection:
     retention_days: 90
     store_payload: true
     anonymize_ip: false
-    field_title: 'Spam protection'
+    field_title: 'eekes_spam_protection.field.name'
     field_xml_path: null
     success_redirect: '?send=true'
     register_form_theme: true
@@ -56,14 +56,24 @@ than stored raw.
 
 ## `field_title`
 
-The name of the field editors add to a Sulu form. Sulu does not translate form field metadata, so
-this is literal text — set it to the language of the administration interface.
+The name of the field editors add to a Sulu form. Sulu translates it in the `admin` domain for every
+locale of the administration interface, so the default is a translation key; the bundle ships
+English, Dutch, French and German. A string that is not a key is shown as it is.
+
+To change the wording, override the key in the project's `translations/admin.<locale>.json`:
+
+```json
+{
+    "eekes_spam_protection.field.name": "Bot check"
+}
+```
 
 ## `field_xml_path`
 
-The form field XML of that field, which holds the label and the help text an editor sees. The one
-shipped with the bundle is English; to change the wording or the language, copy it and point this
-option at the copy:
+The form field XML of that field, which holds the properties an editor fills in. Their label and
+help text are translation keys (`eekes_spam_protection.field.title` and
+`eekes_spam_protection.field.title_info`), so rewording them only takes a translation override. To
+change the properties themselves, copy the XML and point this option at the copy:
 
 ```bash
 cp vendor/eekes/sulu-spam-protection-bundle/config/form-fields/recaptcha.xml \
@@ -72,7 +82,6 @@ cp vendor/eekes/sulu-spam-protection-bundle/config/form-fields/recaptcha.xml \
 
 ```yaml
 eekes_sulu_spam_protection:
-    field_title: 'Spambeveiliging'
     field_xml_path: '%kernel.project_dir%/config/form-fields/recaptcha.xml'
 ```
 

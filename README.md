@@ -96,11 +96,6 @@ PHP 8.3+, Symfony 7.2+, `sulu/sulu` 3.0. `sulu/form-bundle` is optional: its int
 loaded when the bundle is registered, so the checker and the log work in a plain Symfony
 application too.
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the layout of the bundle, the conventions it follows,
-and how to run the tests.
-
 ## License
 
 MIT. See [LICENSE](LICENSE).

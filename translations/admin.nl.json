@@ -1,4 +1,7 @@
 {
+    "eekes_spam_protection.field.name": "Spambeveiliging",
+    "eekes_spam_protection.field.title": "Titel",
+    "eekes_spam_protection.field.title_info": "Interne naam van het veld. Bezoekers zien het nooit: het controleert elke inzending onzichtbaar op spam.",
     "eekes_spam_protection.blocked_submissions": "Geblokkeerde inzendingen",
     "eekes_spam_protection.blocked_at": "Geblokkeerd op",
     "eekes_spam_protection.form": "Formulier",

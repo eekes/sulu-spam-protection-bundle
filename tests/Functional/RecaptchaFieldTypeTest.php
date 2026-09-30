@@ -16,6 +16,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Translation\TranslatorBagInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
@@ -42,12 +43,54 @@ final class RecaptchaFieldTypeTest extends FunctionalTestCase
 
     private const string TOKEN = 'a-captcha-token';
 
-    public function testEditorsCanAddTheFieldToAFormUnderARecognisableName(): void
+    /**
+     * Sulu translates the title in the admin domain, for every locale of the administration.
+     */
+    public function testEditorsFindTheFieldUnderANameInTheirOwnLanguage(): void
     {
-        $configuration = $this->fieldType()->getConfiguration();
+        $title = $this->fieldType()->getConfiguration()->getTitle();
 
-        self::assertSame('Spam protection', $configuration->getTitle());
-        self::assertFileExists($configuration->getXmlPath());
+        self::assertSame('Spam protection', $this->translator()->trans($title, domain: 'admin', locale: 'en'));
+        self::assertSame('Spambeveiliging', $this->translator()->trans($title, domain: 'admin', locale: 'nl'));
+        self::assertSame('Protection anti-spam', $this->translator()->trans($title, domain: 'admin', locale: 'fr'));
+        self::assertSame('Spamschutz', $this->translator()->trans($title, domain: 'admin', locale: 'de'));
+    }
+
+    /**
+     * A meta text without a lang attribute is a translation key to Sulu. One the bundle forgot to
+     * translate would show up in the admin as the raw key.
+     */
+    public function testEveryTextOfTheFieldPropertiesIsTranslatedInEveryShippedLanguage(): void
+    {
+        $xmlPath = $this->fieldType()->getConfiguration()->getXmlPath();
+        self::assertFileExists($xmlPath);
+
+        $document = new \DOMDocument();
+        $document->load($xmlPath);
+        $xpath = new \DOMXPath($document);
+        $xpath->registerNamespace('x', 'http://schemas.sulu.io/template/template');
+
+        $keys = [];
+        foreach ($xpath->query('//x:meta/*[not(@lang)]') ?: [] as $node) {
+            if ($node instanceof \DOMElement) {
+                $keys[] = $node->textContent;
+            }
+        }
+
+        self::assertNotEmpty($keys);
+
+        $translator = $this->translator();
+        \assert($translator instanceof TranslatorBagInterface);
+
+        // defines() ignores the fallback locale, which would otherwise hide a missing translation.
+        foreach (['en', 'nl', 'fr', 'de'] as $locale) {
+            foreach ($keys as $key) {
+                self::assertTrue(
+                    $translator->getCatalogue($locale)->defines($key, 'admin'),
+                    \sprintf('"%s" has no %s translation.', $key, $locale),
+                );
+            }
+        }
     }
 
     /**
@@ -203,9 +246,6 @@ final class RecaptchaFieldTypeTest extends FunctionalTestCase
         $blockedSubmissionLogger = $container->get('eekes_test.blocked_submission_logger');
         \assert($blockedSubmissionLogger instanceof BlockedSubmissionLogger);
 
-        $translator = $container->get('eekes_test.translator');
-        \assert($translator instanceof TranslatorInterface);
-
         $xmlPath = $container->getParameter('eekes_sulu_spam_protection.field_xml_path');
         \assert(\is_string($xmlPath));
 
@@ -216,10 +256,18 @@ final class RecaptchaFieldTypeTest extends FunctionalTestCase
             $spamChecker,
             $blockedSubmissionLogger,
             $this->requestStack(),
-            $translator,
+            $this->translator(),
             $xmlPath,
             $title,
         );
+    }
+
+    private function translator(): TranslatorInterface
+    {
+        $translator = self::getContainer()->get('eekes_test.translator');
+        \assert($translator instanceof TranslatorInterface);
+
+        return $translator;
     }
 
     private function captchaField(): FormField

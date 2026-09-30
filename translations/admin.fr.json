@@ -1,0 +1,17 @@
+{
+    "eekes_spam_protection.field.name": "Protection anti-spam",
+    "eekes_spam_protection.field.title": "Titre",
+    "eekes_spam_protection.field.title_info": "Nom interne du champ. Les visiteurs ne le voient jamais : il vérifie chaque envoi de manière invisible contre le spam.",
+    "eekes_spam_protection.blocked_submissions": "Envois bloqués",
+    "eekes_spam_protection.blocked_at": "Bloqué le",
+    "eekes_spam_protection.form": "Formulaire",
+    "eekes_spam_protection.source": "Source",
+    "eekes_spam_protection.score": "Score",
+    "eekes_spam_protection.reason": "Raison",
+    "eekes_spam_protection.ip_address": "Adresse IP",
+    "eekes_spam_protection.url": "Page",
+    "eekes_spam_protection.locale": "Langue",
+    "eekes_spam_protection.user_agent": "Navigateur",
+    "eekes_spam_protection.answers": "Réponses",
+    "eekes_spam_protection.answers_info": "Ce que l'expéditeur a rempli. Ceci est un journal : les modifications ne sont pas enregistrées."
+}

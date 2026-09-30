@@ -65,7 +65,7 @@ final readonly class RecaptchaFieldType implements FormFieldTypeInterface
     }
 
     /**
-     * Sulu does not translate form field metadata, so the title is literal text.
+     * The title is a translation key: Sulu translates it in the admin domain for every admin locale.
      */
     public function getConfiguration(): FormFieldTypeConfiguration
     {

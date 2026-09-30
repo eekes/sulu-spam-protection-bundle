@@ -1,0 +1,17 @@
+{
+    "eekes_spam_protection.field.name": "Spamschutz",
+    "eekes_spam_protection.field.title": "Titel",
+    "eekes_spam_protection.field.title_info": "Interner Name des Feldes. Besucher sehen es nie: Es prüft jede Einsendung unsichtbar auf Spam.",
+    "eekes_spam_protection.blocked_submissions": "Blockierte Einsendungen",
+    "eekes_spam_protection.blocked_at": "Blockiert am",
+    "eekes_spam_protection.form": "Formular",
+    "eekes_spam_protection.source": "Quelle",
+    "eekes_spam_protection.score": "Score",
+    "eekes_spam_protection.reason": "Grund",
+    "eekes_spam_protection.ip_address": "IP-Adresse",
+    "eekes_spam_protection.url": "Seite",
+    "eekes_spam_protection.locale": "Sprache",
+    "eekes_spam_protection.user_agent": "Browser",
+    "eekes_spam_protection.answers": "Antworten",
+    "eekes_spam_protection.answers_info": "Was der Absender ausgefüllt hat. Dies ist ein Protokoll: Änderungen werden nicht gespeichert."
+}

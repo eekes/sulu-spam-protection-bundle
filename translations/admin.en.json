@@ -1,4 +1,7 @@
 {
+    "eekes_spam_protection.field.name": "Spam protection",
+    "eekes_spam_protection.field.title": "Title",
+    "eekes_spam_protection.field.title_info": "Internal name of the field. Visitors never see it: it checks every submission for spam invisibly.",
     "eekes_spam_protection.blocked_submissions": "Blocked submissions",
     "eekes_spam_protection.blocked_at": "Blocked at",
     "eekes_spam_protection.form": "Form",
